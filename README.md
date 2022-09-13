@@ -4,6 +4,12 @@
 [![PyPI version](https://badge.fury.io/py/lightning-tutorial.svg)](https://badge.fury.io/py/lightning-tutorial)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+### Installation
+
+```BASH
+pip install lightning-tutorial
+```
+
 ### Table of contents
 
 * [PyTorch Datasets and DataLoaders](#pytorch-datasets-and-dataloaders)
