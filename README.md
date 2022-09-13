@@ -110,7 +110,7 @@ val_loader = DataLoader(val_dataset)
 pip install torch-adata
 ```
 
-![torch-adata-concept-overview](https://github.com/mvinyard/torch-adata/blob/main/docs/imgs/torch-adata.concept_overview.svg)
+<a href="https://github.com/mvinyard/torch-adata/" ><img alt="torch-adata-concept-overview" src="https://github.com/mvinyard/torch-adata/blob/main/docs/imgs/torch-adata.concept_overview.svg" width="600" /></a>
 
 ### Example use of the base class
 
