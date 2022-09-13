@@ -1,2 +1,41 @@
 # lightning-tutorial
-pytorch-lightning tutorial
+
+[TOC]
+
+## PyTorch Datasets and DataLoaders
+
+### Key module: `torch.utils.data.Dataset`
+
+The `Dataset` module is an overwritable python module. You can modify it at will as long as you maintain the `__init__`, `__len__`, and `__getitem__` methods that are name-specific handles used by `torch` under the hood when passing data through the model.
+
+
+```python
+from torch.utils.data import Dataset
+
+class TurtleData(Dataset):
+    def __init__(self):
+        """
+        here we should pass requisite arguments
+        that enable __len__() and __getitem__()
+        """
+        
+    def __len__(self):
+        """
+        Returns the length/size/# of samples in the dataset.
+        e.g., a 20,000 cell dataset would return `20_000`.
+        """
+        return # len
+    
+    def __getitem__(self, idx):
+        """
+        Subset and return a batch of the data.
+        
+        `idx` is the batch index (# of idx values = batch size). 
+        Maximum `idx` passed is <= `self.__len__()`
+        """
+        return # sampled data
+```
+
+* [Fantastic PyTorch `Dataset` tutorial from Stanford](https://stanford.edu/~shervine/blog/pytorch-how-to-generate-data-parallel)
+
+* **Try it for yourself!** [**Colab `Dataset` tutorial notebook**](https://colab.research.google.com/github/mvinyard/lightning-tutorial/blob/main/notebooks/tutorial_nb.01.pytorch_datasets.ipynb)
