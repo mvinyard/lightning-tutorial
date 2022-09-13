@@ -1,12 +1,27 @@
 # lightning-tutorial
 
-[TOC]
+### Table of contents
+
+* [PyTorch Datasets and DataLoaders](#pytorch-datasets-and-dataloaders)
+    * Key module: `torch.utils.data.Dataset`
+    * Key module: `torch.utils.data.DataLoader`
+    * Other essential functions
+    * Let’s bring this to single-cell: `torch-adata`
+
+* Lightning basics
+* `LightningDataModule`
+
 
 ## PyTorch Datasets and DataLoaders
 
 ### Key module: `torch.utils.data.Dataset`
 
-The `Dataset` module is an overwritable python module. You can modify it at will as long as you maintain the `__init__`, `__len__`, and `__getitem__` methods that are name-specific handles used by `torch` under the hood when passing data through the model.
+The `Dataset` module is an overwritable python module. You can modify it at will as long as you maintain the following three class methods:
+1. `__init__`
+2. `__len__`
+3. `__getitem__`
+
+These are name-specific handles used by `torch` under the hood when passing data through a model.
 
 
 ```python
