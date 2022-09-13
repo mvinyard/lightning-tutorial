@@ -145,7 +145,64 @@ dataset = torch_adata.TimeResolvedAnnDataset(adata, time_key="Time point")
 
 [☝️ back to table of contents](#table-of-contents)
 
-## Lightning basics
+
+## Lightning basics and the [`LightningModule`](https://pytorch-lightning.readthedocs.io/en/stable/common/lightning_module.html)
+
+
+```python
+from pytorch_lightning imoport LightningModule
+
+class YourSOTAModel(LightningModule):
+    def __init__(self,
+                 net,
+                 optimizer_kwargs={"lr":1e-3},
+                 scheduler_kwargs={},
+                ):
+        super().__init__()
+        
+        self.net = net
+        self.optimizer_kwargs = optimizer_kwargs
+        self.scheduler_kwargs = scheduler_kwargs
+        
+        
+    def forward(self, batch):
+        
+        x, y = batch
+        
+        y_hat = self.net(x)
+        loss  = LossFunc(y_hat, y)
+        
+        return y_hat, loss
+        
+    def training_step(self, batch, batch_idx):
+        
+        y_hat, loss = self.forward(batch)
+        
+        return loss.sum()
+    
+    def validation_step(self, batch, batch_idx):
+        
+        y_hat, loss = self.forward(batch)
+        
+        return loss.sum()
+    
+    def test_step(self, batch, batch_idx):
+        
+        y_hat, loss = self.forward(batch)
+        
+        return loss.sum()
+    
+    def configure_optimizers(self):
+        optimizer = torch.optim.Adam(self.parameters(), **self._optim_kwargs)
+        scheduler = torch.optim.lr_scheduler.StepLR(optimizer(), **self._scheduler_kwargs)
+        
+        return [optimizer, ...], [scheduler, ...]
+```
+
+#### Additional useful documentation and standalone tutorials
+
+* [Lightning in 15 minutes](https://pytorch-lightning.readthedocs.io/en/stable/starter/introduction.html)
+* [Logging metrics at each epoch](https://pytorch-lightning.readthedocs.io/en/stable/common/lightning_module.html#train-epoch-level-metrics)
 
 [☝️ back to table of contents](#table-of-contents)
 
