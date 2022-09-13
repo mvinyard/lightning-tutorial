@@ -4,6 +4,12 @@
 [![PyPI version](https://badge.fury.io/py/lightning-tutorial.svg)](https://badge.fury.io/py/lightning-tutorial)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+### Installation of the partner package
+
+```BASH
+pip install lightning-tutorial
+```
+
 ### Table of contents
 
 * [PyTorch Datasets and DataLoaders](#pytorch-datasets-and-dataloaders)
@@ -12,8 +18,8 @@
     * Other essential functions
     
 * [Single-cell data structures meet pytorch: `torch-adata`](#single-cell-data-structures-meet-pytorch-torch-adata)
-* Lightning basics
-* `LightningDataModule`
+* [Lightning basics and the `LightningModule`](#lightning-basics-and-the-lightningmodule)
+* [`LightningDataModule`](#lightningdatamodule)
 
 
 ## PyTorch Datasets and DataLoaders
@@ -104,7 +110,7 @@ val_loader = DataLoader(val_dataset)
 pip install torch-adata
 ```
 
-![torch-adata-concept-overview](https://github.com/mvinyard/torch-adata/blob/main/docs/imgs/torch-adata.concept_overview.svg)
+<a href="https://github.com/mvinyard/torch-adata/" ><img alt="torch-adata-concept-overview" src="https://github.com/mvinyard/torch-adata/blob/main/docs/imgs/torch-adata.concept_overview.svg" width="600" /></a>
 
 ### Example use of the base class
 
@@ -139,10 +145,116 @@ dataset = torch_adata.TimeResolvedAnnDataset(adata, time_key="Time point")
 
 [☝️ back to table of contents](#table-of-contents)
 
-## Lightning basics
+
+## Lightning basics and the [`LightningModule`](https://pytorch-lightning.readthedocs.io/en/stable/common/lightning_module.html)
+
+
+```python
+from pytorch_lightning imoport LightningModule
+
+class YourSOTAModel(LightningModule):
+    def __init__(self,
+                 net,
+                 optimizer_kwargs={"lr":1e-3},
+                 scheduler_kwargs={},
+                ):
+        super().__init__()
+        
+        self.net = net
+        self.optimizer_kwargs = optimizer_kwargs
+        self.scheduler_kwargs = scheduler_kwargs
+        
+        
+    def forward(self, batch):
+        
+        x, y = batch
+        
+        y_hat = self.net(x)
+        loss  = LossFunc(y_hat, y)
+        
+        return y_hat, loss
+        
+    def training_step(self, batch, batch_idx):
+        
+        y_hat, loss = self.forward(batch)
+        
+        return loss.sum()
+    
+    def validation_step(self, batch, batch_idx):
+        
+        y_hat, loss = self.forward(batch)
+        
+        return loss.sum()
+    
+    def test_step(self, batch, batch_idx):
+        
+        y_hat, loss = self.forward(batch)
+        
+        return loss.sum()
+    
+    def configure_optimizers(self):
+        optimizer = torch.optim.Adam(self.parameters(), **self._optim_kwargs)
+        scheduler = torch.optim.lr_scheduler.StepLR(optimizer(), **self._scheduler_kwargs)
+        
+        return [optimizer, ...], [scheduler, ...]
+```
+
+#### Additional useful documentation and standalone tutorials
+
+* [Lightning in 15 minutes](https://pytorch-lightning.readthedocs.io/en/stable/starter/introduction.html)
+* [Logging metrics at each epoch](https://pytorch-lightning.readthedocs.io/en/stable/common/lightning_module.html#train-epoch-level-metrics)
 
 [☝️ back to table of contents](#table-of-contents)
 
-## `LightningDataModule`
+
+## [`LightningDataModule`](https://pytorch-lightning.readthedocs.io/en/stable/notebooks/lightning_examples/datamodules.html)
+
+**Purpose**: Make your model independent of a given dataset, while at the same time making your dataset reproducible and perhaps just as important: **easily shareable**.
+
+```python
+from pytorch_lightning import LightningDataModule
+from torch.data.utils import DataLoader
+
+class YourDataModule(LightningDataModule):
+    
+    def __init__(self):
+        # define any setup computations
+        
+    def prepare_data(self):        
+        # download data if applicable
+        
+    def setup(self, stage):
+        # assign data to `Dataset`(s)
+        
+    def train_dataloader(self):
+        return DataLoader(self.train_dataset, batch_size=self.batch_size, num_workers=self.num_workers)
+        
+    def val_dataloader(self):
+        return DataLoader(self.val_dataset, batch_size=self.batch_size, num_workers=self.num_workers)
+        
+    def test_dataloader(self):
+        return DataLoader(self.test_dataset, batch_size=self.batch_size, num_workers=self.num_workers)
+        
+```
+
+When it comes to actually using one of these, it looks something like the following:
+
+```python
+# Init the LightningDataModule as well as the LightningModel
+data = YourDataModule()
+model = YourLightningModel()
+
+# Define trainer
+trainer = Trainer(accelerator="auto", devices=1)
+
+# Ultimately, both  model and data are passed as an arg to trainer.fit
+trainer.fit(model, data)
+```
+
+* [Official `LightningDataModule` documentation](https://pytorch-lightning.readthedocs.io/en/stable/notebooks/lightning_examples/datamodules.html)
+
+
+Here's an example of a `LightningDataModule` implemented in practice, using the LARRY single-cell dataset: [**link**](https://github.com/mvinyard/LARRY-dataset). Initial downloading and formatting occurs only once but takes several minutes so we will leave it outside the scope of this tutorial.
 
 [☝️ back to table of contents](#table-of-contents)
+
