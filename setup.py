@@ -19,7 +19,8 @@ setup(
         "pytorch-lightning>=1.7.4",
         "scanpy>=1.9.1",
         "nb_black>=0.7",
-	"torch-adata",
+        "torch-adata",
+        "vinplots",
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
