@@ -207,7 +207,7 @@ class YourSOTAModel(LightningModule):
 [☝️ back to table of contents](#table-of-contents)
 
 
-## `LightningDataModule`
+## [`LightningDataModule`](https://pytorch-lightning.readthedocs.io/en/stable/notebooks/lightning_examples/datamodules.html)
 
 ```python
 from pytorch_lightning import LightningDataModule
