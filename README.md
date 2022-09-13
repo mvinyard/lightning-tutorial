@@ -18,8 +18,8 @@ pip install lightning-tutorial
     * Other essential functions
     
 * [Single-cell data structures meet pytorch: `torch-adata`](#single-cell-data-structures-meet-pytorch-torch-adata)
-* Lightning basics
-* `LightningDataModule`
+* [Lightning basics and the `LightningModule`](#lightning-basics-and-the-lightningmodule)
+* [`LightningDataModule`](#lightningdatamodule)
 
 
 ## PyTorch Datasets and DataLoaders
