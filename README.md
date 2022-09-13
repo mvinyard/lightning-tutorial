@@ -1,5 +1,9 @@
 # ⚡ lightning-tutorial
 
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/lightning-tutorial.svg)](https://pypi.python.org/pypi/lightning-tutorial/)
+[![PyPI version](https://badge.fury.io/py/lightning-tutorial.svg)](https://badge.fury.io/py/lightning-tutorial)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 ### Table of contents
 
 * [PyTorch Datasets and DataLoaders](#pytorch-datasets-and-dataloaders)
