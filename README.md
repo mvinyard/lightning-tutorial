@@ -134,3 +134,11 @@ dataset = torch_adata.TimeResolvedAnnDataset(adata, time_key="Time point")
 ```
 
 [☝️ back to table of contents](#table-of-contents)
+
+## Lightning basics
+
+[☝️ back to table of contents](#table-of-contents)
+
+## `LightningDataModule`
+
+[☝️ back to table of contents](#table-of-contents)
