@@ -209,6 +209,8 @@ class YourSOTAModel(LightningModule):
 
 ## [`LightningDataModule`](https://pytorch-lightning.readthedocs.io/en/stable/notebooks/lightning_examples/datamodules.html)
 
+**Purpose**: Make your model independent of a given dataset, while at the same time making your dataset reproducible and perhaps just as important: **easily shareable**.
+
 ```python
 from pytorch_lightning import LightningDataModule
 from torch.data.utils import DataLoader
