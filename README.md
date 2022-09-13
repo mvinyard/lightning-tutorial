@@ -206,6 +206,53 @@ class YourSOTAModel(LightningModule):
 
 [☝️ back to table of contents](#table-of-contents)
 
+
 ## `LightningDataModule`
 
+```python
+from pytorch_lightning import LightningDataModule
+from torch.data.utils import DataLoader
+
+class YourDataModule(LightningDataModule):
+    
+    def __init__(self):
+        # define any setup computations
+        
+    def prepare_data(self):        
+        # download data if applicable
+        
+    def setup(self, stage):
+        # assign data to `Dataset`(s)
+        
+    def train_dataloader(self):
+        return DataLoader(self.train_dataset, batch_size=self.batch_size, num_workers=self.num_workers)
+        
+    def val_dataloader(self):
+        return DataLoader(self.val_dataset, batch_size=self.batch_size, num_workers=self.num_workers)
+        
+    def test_dataloader(self):
+        return DataLoader(self.test_dataset, batch_size=self.batch_size, num_workers=self.num_workers)
+        
+```
+
+When it comes to actually using one of these, it looks something like the following:
+
+```python
+# Init the LightningDataModule as well as the LightningModel
+data = YourDataModule()
+model = YourLightningModel()
+
+# Define trainer
+trainer = Trainer(accelerator="auto", devices=1)
+
+# Ultimately, both  model and data are passed as an arg to trainer.fit
+trainer.fit(model, data)
+```
+
+* [Official `LightningDataModule` documentation](https://pytorch-lightning.readthedocs.io/en/stable/notebooks/lightning_examples/datamodules.html)
+
+
+Here's an example of a `LightningDataModule` implemented in practice, using the LARRY single-cell dataset: [**link**](https://github.com/mvinyard/LARRY-dataset). Initial downloading and formatting occurs only once but takes several minutes so we will leave it outside the scope of this tutorial.
+
 [☝️ back to table of contents](#table-of-contents)
+
