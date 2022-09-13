@@ -15,7 +15,10 @@ setup(
         "lightning_tutorial",
     ],
     install_requires=[
-        "pytorch-lightning>=1.7.4"
+        "torch>=1.12.1",
+        "pytorch-lightning>=1.7.4",
+        "scanpy>=1.9.1",
+        "nb_black>=0.7",
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
