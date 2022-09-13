@@ -7,7 +7,7 @@
     * Key module: `torch.utils.data.DataLoader`
     * Other essential functions
     
-* Single-cell data structures meet pytorch: `torch-adata`
+* [Single-cell data structures meet pytorch: `torch-adata`](#single-cell-data-structures-meet-pytorch-torch-adata)
 * Lightning basics
 * `LightningDataModule`
 
@@ -87,9 +87,7 @@ val_loader = DataLoader(val_dataset)
 * **Parent module**: [`torch.utils.data`](https://pytorch.org/docs/stable/data.html)
 * **[Datasets and DataLoaders tutorial](https://pytorch.org/tutorials/beginner/basics/data_tutorial.html)**
 
-
 [☝️ back to table of contents](#table-of-contents)
-
 
 ## Single-cell data structures meet pytorch: `torch-adata`
 # ![torch-adata-logo](https://github.com/mvinyard/torch-adata/blob/main/docs/imgs/torch-adata.logo.large.svg)
@@ -134,3 +132,5 @@ import torch_adata as ta
 adata = a.read_h5ad("/path/to/data.h5ad")
 dataset = torch_adata.TimeResolvedAnnDataset(adata, time_key="Time point")
 ```
+
+[☝️ back to table of contents](#table-of-contents)
