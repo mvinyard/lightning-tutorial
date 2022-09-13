@@ -21,7 +21,7 @@ setup(
         "nb_black>=0.7",
         "torch-adata",
         "vinplots",
-        "larry",
+        "larry-dataset",
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
