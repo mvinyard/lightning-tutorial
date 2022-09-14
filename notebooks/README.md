@@ -11,5 +11,3 @@
 ### Other notebooks
 
 5. **[TimeResolvedAnnDataset](TimeResolvedAnnDataset.ipynb)** ([open in colab!](https://colab.research.google.com/github/mvinyard/lightning-tutorial/blob/main/notebooks/TimeResolvedAnnDataset.ipynb))
-
-TimeResolvedAnnDataset.ipynb
