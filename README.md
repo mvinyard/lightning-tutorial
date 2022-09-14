@@ -199,6 +199,9 @@ class YourSOTAModel(LightningModule):
         return [optimizer, ...], [scheduler, ...]
 ```
 
+* **Try it for yourself!** [**Lightning Classifier tutorial notebook**](https://colab.research.google.com/github/mvinyard/lightning-tutorial/blob/main/notebooks/tutorial_nb.02.LightningClassifier.ipynb)
+
+
 #### Additional useful documentation and standalone tutorials
 
 * [Lightning in 15 minutes](https://pytorch-lightning.readthedocs.io/en/stable/starter/introduction.html)
@@ -237,6 +240,8 @@ class YourDataModule(LightningDataModule):
         
 ```
 
+* **Try it for yourself!** [**LightningDataModule tutorial notebook**](https://colab.research.google.com/github/mvinyard/lightning-tutorial/blob/main/notebooks/tutorial_nb.03.LightningDataModule.ipynb)
+
 When it comes to actually using one of these, it looks something like the following:
 
 ```python
@@ -250,6 +255,8 @@ trainer = Trainer(accelerator="auto", devices=1)
 # Ultimately, both  model and data are passed as an arg to trainer.fit
 trainer.fit(model, data)
 ```
+
+* **Try it for yourself!** [**LightningGAN tutorial notebook**](https://colab.research.google.com/github/mvinyard/lightning-tutorial/blob/main/notebooks/tutorial_nb.04.LightningGAN.ipynb)
 
 * [Official `LightningDataModule` documentation](https://pytorch-lightning.readthedocs.io/en/stable/notebooks/lightning_examples/datamodules.html)
 
