@@ -13,6 +13,7 @@ setup(
     description="pytorch-lightning tutorial",
     packages=[
         "lightning_tutorial",
+        "lightning_tutorial._data",
     ],
     install_requires=[
         "torch>=1.12.1",
