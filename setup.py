@@ -22,6 +22,7 @@ setup(
         "torch-adata",
         "vinplots",
         "larry-dataset",
+	"torch-composer",
     ],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
