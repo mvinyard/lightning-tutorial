@@ -265,3 +265,8 @@ Here's an example of a `LightningDataModule` implemented in practice, using the 
 
 [☝️ back to table of contents](#table-of-contents)
 
+## Questions or suggestions?
+
+I'd love to get in touch. Send me an [**email**](mailto:vinyard@g.harvard.edu) or open an [**issue**](https://github.com/mvinyard/lightning-tutorial/issues/new)!
+
+⚡
